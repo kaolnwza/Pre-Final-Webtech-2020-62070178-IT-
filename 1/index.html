@@ -31,7 +31,7 @@
         margin: 0px
     }
 
-    .card-img-top {
+    .card-img-tosp {
         height: 640px;
         width: 640px;
     }
@@ -61,28 +61,23 @@
             out += `</div></div>`;
         }*/
         //out += "<img src='" + data.track.items[0].album.album_type "' alt=''>"
-        out += `<div class="row">`;
-        for (var i = 0; i < data.tracks.items.length; i++) {
-            if (count == 3) {
-                out += `<div class="row">`;
-            }
-            out += `<div class="col">`;
-            out += `<img class="card-img-top" src="` + data.tracks.items[i].album.images[0].url + `">`;
-            out += `<div class="card-body">`;
-            out += ` <h5 class="card-title">` + data.tracks.items[i].album.name + ` </h5>`;
-            out += `<p class="card-text">` + data.tracks.items[i].album.artists[0].name + `</p>`;
-            out += `<p class="card-text">` + data.tracks.items[i].album.release_date + `</p>`;
-            out += `<p class="card-text">` + data.tracks.items[i].album.available_markets.length + `</p>`;
-            out += `</div></div>`;
-            if (count == 3) {
-                out += `</div>`;
-                count = 0;
+
+        for (var i = 0; i < data.tracks.items.length; i += 3) {
+            out += `<div class="row">`;
+            for (var i = 0; i < data.tracks.items.length; i++) {
+
+                out += `<div class="col-3">`;
+                out += `<img class="card-img-top" src="` + data.tracks.items[i].album.images[0].url + `">`;
+                out += `<div class="card-body">`;
+                out += ` <h5 class="card-title">` + data.tracks.items[i].album.name + ` </h5>`;
+                out += `<p class="card-text">Artist: ` + data.tracks.items[i].album.artists[0].name + `</p>`;
+                out += `<p class="card-text">Release date: ` + data.tracks.items[i].album.release_date + `</p>`;
+                out += `<p class="card-text">Avaliable: ` + data.tracks.items[i].album.available_markets.length + `</p>`;
+                out += count;
+                out += `</div></div>`;
 
             }
-            if (i == 0) {
-                out += `</div>`;
-            }
-            count++;
+            out += `</div>`;
         }
 
 
